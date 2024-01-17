@@ -17,39 +17,46 @@ public class EmployeeController {
     // Get all employees
     // GET: /api/employees
     @GetMapping
-    public Iterable<Employee> getAllEmployees() {
+    public Iterable<Employee> getAllEmployees(){
         return service.getAllEmployees();
     }
 
 
     // Get one employee by id
-    // GET: /api/employees
+    // GET: /api/employees/{id}
     @GetMapping("/{id}")
-    public Optional<Employee> getOneEmployeeById(@PathVariable Long id) {
-        return service.getOneEmployeeById(id);
+    public Optional<Employee> getOneEmployeeById(@PathVariable Long id){
+        return service.getEmployeeById(id);
     }
 
 
     // Create one user
     // POST: /api/employees
     @PostMapping
-    public Employee postEmployee(@RequestBody Employee employee) {
+    public Employee postEmployee(@RequestBody Employee employee){
         return service.createEmployee(employee);
     }
+
 
     // Put one user
     // PUT: /api/employees/{id}
     @PutMapping("/{id}")
-    public Employee putEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        return service.updateEmployee(id, employee);
+    public Employee putEmployee(@PathVariable Long id, @RequestBody Employee employee){
+        return service.updateEmployeeById(id, employee);
     }
 
-    // Get: /api/employees
+
+    // Delete one user
     // DELETE: /api/employees/{id}
     @DeleteMapping("/{id}")
-    public boolean deleteEmployee(@PathVariable Long id) {
-
-       return service.deleteEmployeeById(id);
-
+    public boolean deleteOneById(@PathVariable Long id){
+        return service.deleteEmployeeById(id);
     }
+
+
+    @PostMapping("/seed")
+    public Iterable<Employee> seedEmployees(){
+        return service.seedEmployees();
+    }
+
 }
