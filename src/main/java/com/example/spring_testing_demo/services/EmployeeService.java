@@ -13,7 +13,7 @@ import java.util.Optional;
 public class EmployeeService {
 
     @Autowired
-    private EmployeeRepository repository;
+    private EmployeeRepositories repository;
 
 
     // Get all employees
